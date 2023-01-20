@@ -1,0 +1,17 @@
+{% extends "backend/_default/base.html.twig" %}
+
+
+{% set pagetitle = "administrator.administrators"|trans %}
+{% block pagetitle %}
+	{{ pagetitle}}
+{% endblock %}
+
+{% block title %}
+	{{ pagetitle}}
+{% endblock %}
+
+{% block content %}
+
+	{% embed "backend/_default/partials/mainform.html.twig" %}{% endembed %} 
+
+{% endblock %}

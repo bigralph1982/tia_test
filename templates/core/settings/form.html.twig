@@ -1,0 +1,95 @@
+{% extends 'backend/_default/base.html.twig' %}
+
+{% set pagetitle = "settings.title"|trans%}
+{% block pagetitle %}
+	{{ pagetitle}}
+{% endblock %}
+
+{% block title %}
+	{{ pagetitle}}
+{% endblock %}
+
+{% block javascript %}
+	{{ parent() }}
+
+	<script src="{{ asset('bundles/backendadmin/custom/js/images.js') }}" type="text/javascript"></script>
+	<script>
+		$(document).ready(function () {
+
+			$('input[type=file].imgfile').before($('.imagefile'));
+			$(".upload-image").after($(".uploadfilestable"));
+
+			$(document).on("click", ".send-test-email", function(e){
+                e.preventDefault();
+                var href = $("#sendmail").data("href") + "?to=" + $("#mailto").val();
+                
+                return window.location.href= href;
+                
+                $("#sendmail").attr("href", href).trigger("click");
+            });
+
+		});
+	</script>
+
+{% endblock %}
+
+
+{% block content %}
+
+    {% embed "backend/_default/partials/mainform.html.twig" %}
+
+		{% block tabbedform %}
+			<ul class="nav nav-tabs nav-line-tabs nav-line-tabs-2x border-transparent fs-4 fw-semibold">
+                <!--begin:::Tab item-->
+                <li class="nav-item">
+                    <a class="nav-link text-active-primary pb-5 active" data-bs-toggle="tab" href="#tab_1_info">
+                    <!--begin::Svg Icon | path: icons/duotune/general/gen001.svg-->
+                    <span class="svg-icon svg-icon-2 me-2">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M11 2.375L2 9.575V20.575C2 21.175 2.4 21.575 3 21.575H9C9.6 21.575 10 21.175 10 20.575V14.575C10 13.975 10.4 13.575 11 13.575H13C13.6 13.575 14 13.975 14 14.575V20.575C14 21.175 14.4 21.575 15 21.575H21C21.6 21.575 22 21.175 22 20.575V9.575L13 2.375C12.4 1.875 11.6 1.875 11 2.375Z" fill="currentColor" />
+                        </svg>
+                    </span>
+                    <!--end::Svg Icon-->{{ "general.information"|trans}}</a>
+                </li>
+            </ul>
+
+			<div class="tab-content">
+				<div class="tab-pane fade active show" id="tab_1_info">
+					<div class="row fv-row mb-7 fv-plugins-icon-container">
+						<div class="col-md-9">
+							<!--begin::Input-->
+							<input type="email" id="mailto" class="form-control form-control-solid" name="meta_title" value="">
+						</div>
+						<div class="col-md-3">
+							<!--end::Input-->
+							<button  class="btn btn-primary send-test-email">{{"mailer.send"|trans}}</button>
+							<a style="position:absolute;opacity:0" id="sendmail" data-href="{{ path("admin_settings_test_mailer") }}">{{"mailer.send"|trans}}</a>
+							<div class="fv-plugins-message-container invalid-feedback"></div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+		{% endblock %}
+
+		{% block images %}
+			{% if entity.id %}
+				{% if entity.image %}
+					<p class="imagefile">
+						<a class="fancybox-button" href="{{ asset('uploads/images') }}/{{entity.image}}" data-rel="fancybox-button">
+
+							<img src="{{ ('uploads/images/' ~ entity.image) | imagine_filter('admin_thumb')}}"/>
+						</a>
+					</p>
+				{% endif %}
+			{% endif %}
+		{% endblock %}
+
+		{% block preview %}
+			{% include 'backend/_default/partials/imagepreview.html.twig' %}
+		{% endblock %}
+
+
+	{% endembed %}
+
+{% endblock %}

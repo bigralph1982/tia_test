@@ -1,0 +1,191 @@
+error:
+    invalid_user_account: Invalid User Account
+    account_disabled: Account Disabled
+    account_deleted: Account Deleted
+    
+general:
+    webtitle: Sync - Panel
+    dashboard: Dashboard
+    settings: Settings
+    home: Home
+    logout: Logout
+    edit: Edit
+    delete: Delete
+    editprofile: Edit Profile
+    information: Information
+    code: Code
+    to: To
+    from: From
+    ispublic: Is Public
+    addmore: Add More
+    new: New Entry 
+    list: List Entries
+
+authentication: 
+    signin: Sign In
+    wait: Please wait...
+    
+form:
+    name: Name
+    legend: Short Description
+    username: Username
+    password: Password
+    repeatpassword: Repeat Password
+    accesstype: Access Type
+    action: Action
+    level: Level
+    status: Status
+    role: Role 
+    permissions: Permissions
+    save: Save
+    content: Content
+    ordering: Order
+    type: Type
+    sourceurl: Source URL
+    image: Image
+    email: Email
+    phone: phone
+    deleteImage: Delete Image
+    url: URL
+
+table:
+   creationdate: Creation Date
+   action: Action
+   enabled: Enabled
+   disabled: Disabled
+   title: Title
+   shortDescription: Short Description
+   deleteconfirmationmsg: Are you sure you want to delete this record?
+   keyword: Keyword
+   delete: Delete
+   disable: Disable
+   enable: Enable
+   active: Active
+   inactive: Inactive
+   clear: Clear
+   add: Add
+   edit: Edit
+seo:
+    seo: SEO
+    description: SEO Description
+    keywords: SEO Keywords
+    title: SEO Title
+    author: Author
+    managepages: Manage pages
+    add: Add SEO
+
+countries:
+    provinces:  
+        select: Select Province
+        selectdistrict: Select District
+        province: Province
+        self: Provinces
+        manage: Manage Provinces
+        list: List Provinces
+        edit: Edit Province
+        add: Add Province
+        districts:
+            self: Districts
+            district: District
+            add: Add Districts
+            
+        
+    new: New country
+    list: List countries
+    edit: Edit Country
+    manage: Manage Countries
+    countries: Countries
+    ismain: Main Country?
+    nationality: Nationality 
+    country: Country
+    addlanguage: Add Language
+    onfrontend: Available for Frontend
+    select: Select Country
+    selectdistrict: Select District
+
+languages:
+    customid: Custom ID
+    code: Code
+    languages: Languages
+    list: List Languages
+    new: New Language
+    edit: Edit Language
+    accesslangs: Access Languages
+    manage: Manage Languages
+    ismainlang: Is Main Language
+    language: Language
+    
+pages:
+    code: Page Code
+    new: New Page
+    list: List Pages
+    edit: Edit Page
+    pages: Pages
+    manage: Manage Pages
+
+contact:
+    contact: Contact
+    edit: Edit Contact Information
+    address: Address
+    footertext: Footer Text
+    mapUrl: Map Url
+    hideInfo: Hide Contact Information
+    hideMap: Hide Map
+    hashtag: Instagram Hashtag
+    feedTitle: Instagram Title
+    newslettertext: Newsletter Text
+    
+backend:
+    ui:
+        deletesuccess: The record has been deleted successfully.
+        savesuccess: The record has been saved successfully.
+
+roles:
+    ROLE_DEVELOPER: Developer
+    ROLE_SUPER_ADMIN: Super Administrator
+    ROLE_ADMIN: Administrator
+    ROLE_EDITOR: ROLE_EDITOR
+    title: Roles
+    view: View
+    create: Create
+    update: Update
+    delete: Delete
+    changeroles: Change Roles
+
+settings: 
+    senderName: Sender Name
+    replyToEmail: Reply To Email
+    placeholderImage: Placeholder Image
+    title: Global Settings
+    mailerHost: Mailer Host
+    mailerPort: Mailer Port
+    mailerEncryption: Mailer Encryption
+    mailerTransport: Mailer Transport
+    mailerUsername: Mailer Username
+    mailerEmail: Mailer Email
+    mailerPassword: Mailer Password
+    recordsPerPage: Records Per Page
+    enableTwoStepAuthentication: Allow 2 step authentication
+
+administrator:
+    administrators: Administrators
+    add: Add Administrator
+
+role:
+    roles: Roles
+    add: Add Role
+
+member: 
+    members: Members
+    add: Add Member
+
+mailer: 
+    send: Send Test Msg 
+
+slider:
+    new: New Slider
+    list: List Sliders
+    edit: Edit Slider
+    sliders: Sliders
+    manage: Manage Sliders
+    

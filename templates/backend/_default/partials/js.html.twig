@@ -1,0 +1,95 @@
+
+<script>var hostUrl = "assets/";</script>
+<script src="{{ asset('assets/plugins/global/plugins.bundle.js') }}"></script>
+<script src="{{ asset('assets/js/scripts.bundle.js') }}"></script>
+<script src="{{ asset('assets/plugins/custom/fullcalendar/fullcalendar.bundle.js') }}"></script>
+<script src="https://cdn.amcharts.com/lib/5/index.js"></script>
+<script src="https://cdn.amcharts.com/lib/5/xy.js"></script>
+<script src="https://cdn.amcharts.com/lib/5/percent.js"></script>
+<script src="https://cdn.amcharts.com/lib/5/radar.js"></script>
+<script src="https://cdn.amcharts.com/lib/5/themes/Animated.js"></script>
+<script src="https://cdn.amcharts.com/lib/5/map.js"></script>
+<script src="https://cdn.amcharts.com/lib/5/geodata/worldLow.js"></script>
+<script src="https://cdn.amcharts.com/lib/5/geodata/continentsLow.js"></script>
+<script src="https://cdn.amcharts.com/lib/5/geodata/usaLow.js"></script>
+<script src="https://cdn.amcharts.com/lib/5/geodata/worldTimeZonesLow.js"></script>
+<script src="https://cdn.amcharts.com/lib/5/geodata/worldTimeZoneAreasLow.js"></script>
+<script src="{{ asset('assets/plugins/custom/datatables/datatables.bundle.js') }}"></script>
+<script src="{{ asset('assets/js/custom/apps/ecommerce/catalog/products.js') }}"></script>
+<script src="{{ asset('assets/js/widgets.bundle.js') }}"></script>
+<script src="{{ asset('assets/js/custom/widgets.js') }}"></script>
+<script src="{{ asset('assets/js/custom/apps/chat/chat.js') }}"></script>
+<script src="{{ asset('assets/js/custom/utilities/modals/upgrade-plan.js') }}"></script>
+<script src="{{ asset('assets/js/custom/utilities/modals/create-app.js') }}"></script>
+<script src="{{ asset('assets/js/custom/utilities/modals/new-target.js') }}"></script>
+<script src="{{ asset('assets/js/custom/utilities/modals/users-search.js') }}"></script>
+
+<script>
+
+    $(document).ready(function () {
+
+        $("form").find("div").addClass("form-group");
+
+        $("form").bind('DOMNodeInserted DOMNodeRemoved', function () {
+            $(this).find("div").addClass("form-group");
+        });
+
+        $("form").append($('form').find($(".form-save")));
+
+        $(".select2").select2({
+            width: 'auto',
+            allowClear: true
+        });
+
+        $(".dataTable").dataTable({
+            "bPaginate": false
+        });
+
+        $('[type=submit], .saveexit').click(function (e) {
+            $(this).closest("form").find(':required:invalid').each(function () {
+                var id = $('.tab-pane').find(':required:invalid').closest('.tab-pane').attr('id');
+                var activetab = $('.tab-content .tab-pane.active').attr('id');
+                if(id == activetab){
+                    return false;
+                }
+                $('.nav a[href="#' + id + '"]').tab('show');
+                var that = this;
+                setTimeout(function(){
+                    console.log("focusing");
+                    $(that).first().focus();
+                },500);
+                e.preventDefault();
+                return false;
+            });
+        });
+
+        $(document).on("click", ".addmore", function(e){
+            e.preventDefault();
+            var prototypeHolder = $(this).closest(".portlet").find(".prototypecontainer");
+            var newWidget = prototypeHolder.attr("data-prototype");
+            var dataCount = prototypeHolder.attr("data-count");
+            newWidget = newWidget.replace(/__name__/g, dataCount);
+        
+            var limit = prototypeHolder.attr("data-limit");
+            dataCount++;
+            if(limit && dataCount > limit){
+                return false;
+            }
+            prototypeHolder.attr("data-count", dataCount);
+
+            var newdata = newWidget;
+
+            prototypeHolder.append(newdata);
+        });
+
+        $(document).on("click", ".removeitem", function(e){
+            e.preventDefault();
+            var prototypeHolder = $(this).closest(".portlet").find(".prototypecontainer");
+            var dataCount = prototypeHolder.attr("data-count");
+        
+            dataCount--;
+            prototypeHolder.attr("data-count", dataCount);
+            $(this).closest(".prototypeitem").remove();
+        });
+    });
+</script> 

@@ -1,0 +1,54 @@
+{% if pageCount > 1 %}
+
+        <ul class="pagination"  >
+
+            {# {% if first is defined and current != first %}
+                <li>
+                    <a class="icon item" href="{{ path(route, query|merge({(pageParameterName): first})) }}" title="First">
+                        <i class="fa fa-angle-double-left"></i>
+                    </a>
+                </li>
+            {% endif %} #}
+
+
+            {% if previous is defined %}
+                <li class="page-item previous" >
+                    <a href="{{ path(route, query|merge({(pageParameterName): previous})) }}" title="Prev" class="page-link cursor-pointer">
+                        <i class="previous"></i>
+                    </a>
+                </li>
+
+            {% endif %}
+
+            {% for page in pagesInRange %}
+                {% if page != current %}
+                    <li class="page-item">
+                        <a href="{{ path(route, query|merge({(pageParameterName): page})) }}" class="page-link cursor-pointer">{{ page }}</a>
+                    </li>
+
+                {% else %}
+                    <li class="page-item active">
+                        <a href="{{ path(route, query|merge({(pageParameterName): page})) }}" class="page-link cursor-pointer">{{ page }}</a>
+                    </li>
+                {% endif %}
+
+            {% endfor %}
+
+            {% if next is defined %}
+                <li class="page-item next">
+                    <a href="{{ path(route, query|merge({(pageParameterName): next})) }}" title="Next" class="page-link cursor-pointer">
+                        <i class="next"></i>
+                    </a>
+                </li> 
+            {% endif %} 
+
+            {# {% if last is defined and current != last %}
+
+                <li>
+                    <a class="icon item" href="{{ path(route, query|merge({(pageParameterName): last})) }}" title="Last">
+                        <i class="fa fa-angle-double-right"></i>
+                    </a>
+                </li>
+            {% endif %} #}
+        </ul>
+{% endif %}

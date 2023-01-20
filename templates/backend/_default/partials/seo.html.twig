@@ -1,0 +1,31 @@
+
+<div class="col-md-12 seofields">
+        <!--begin::Col header-->
+        <div class="mb-12">
+            <div class="d-flex flex-stack">
+                <div class="fw-bold fs-4">{{ "seo.seo"|trans}}
+                <span class="fs-6 text-gray-400 ms-2"></span></div>
+                <!--begin::Menu-->
+                <div>
+                </div>
+                <!--end::Menu-->
+            </div>
+            <div class="h-3px w-100 bg-primary"></div>
+        </div>
+        <!--end::Col header-->
+        <!--begin::Card-->
+        <div class="card mb-6 mb-xl-9">
+            <!--begin::Card body-->
+            <div class="card-body">
+                <!--begin::Content-->
+                <div class="fs-6 fw-semibold text-gray-600 mb-5">
+                {{ form_row(trans.seo_title) }}
+                {{ form_row(trans.seo_description) }}
+                {{ form_row(trans.seo_keywords) }}
+                </div>
+                <!--end::Content-->
+            </div>
+            <!--end::Card body-->
+        </div>
+        <!--end::Card-->
+    </div>

@@ -1,0 +1,2 @@
+swiftmailer:
+    url: '%app.mailer_transport%://%app.mailer_host%:%app.mailer_port%?encryption=%app.mailer_encryption%&auth_mode=login&username=%app.mailer_user%&password=%app.mailer_password%'

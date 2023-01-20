@@ -1,0 +1,14 @@
+administrators_login:
+    path:   /backauth/login
+    controller: App\Controller\Backend\SecurityController::login
+
+administrators_login_check:
+    path:   /backauth/login_check
+    controller:  App\Controller\Backend\AdministratorsController::index
+
+administrators_logout:
+    path:   /backauth/logout
+    controller: App\Controller\Backend\SecurityController::logout
+
+    
+     
