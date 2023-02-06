@@ -9,7 +9,7 @@ use FOS\CKEditorBundle\Form\Type\CKEditorType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\UrlType;
 
-class BookTanslationsType extends AbstractType
+class BookTranslationsType extends AbstractType
 {
 
     /**

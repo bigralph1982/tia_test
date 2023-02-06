@@ -24,6 +24,7 @@ class CategoryType extends AbstractType
     {
 
         $entity = new Category;
+        $developer = $options['developer'];
 
         $builder
             ->add("translations", ResourceTranslationsType::class, [
@@ -48,6 +49,7 @@ class CategoryType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => Category::class,
+            'developer'=>null,
         ]);
     }
 }

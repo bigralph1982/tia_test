@@ -1,12 +1,10 @@
 <?php
 namespace App\Entity\Production\Category;
 
-
-
+use App\Repository\Production\Category\CategoryRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\Common\Collections\ArrayCollection;
-
 
 use App\Traits\Core\DatesTrait;
 use App\Traits\Core\StatusTrait;

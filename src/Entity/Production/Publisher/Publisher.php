@@ -1,29 +1,28 @@
 <?php
 namespace App\Entity\Production\Publisher;
 
-
-use Doctrine\Common\Collections\Collection;
+use App\Entity\Production\Author\Author;
+use App\Repository\Production\Publisher\PublisherRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\Common\Collections\ArrayCollection;
+
 
 use App\Traits\Core\DatesTrait;
 use App\Traits\Core\StatusTrait;
-use App\Entity\Production\Publisher\PublisherTranslations;
-use App\Repository\Production\Publisher\PublisherRepository;
-
 
 /**
-
  *
- * @ORM\Table(name="publisher")
- * @ORM\HasLifecycleCallbacks()
+ * @ORM\Table(name="Publisher")
+ * @ORM\HasLifecycleCallbacks() 
  * @ORM\Entity(repositoryClass=PublisherRepository::class)
  */
 class Publisher
 {
 
-    use DatesTrait;
     use StatusTrait;
+    use DatesTrait;
+   
 
     /**
      * @var int
@@ -34,37 +33,64 @@ class Publisher
      */
     private $id;
 
-
-       /**
+    /**
      * @var int
      *
      * @ORM\Column(name="ordering", type="integer", nullable=true)
      */
     private $ordering;
+    public $productPlaceholder;
 
     /**
-     * @ORM\OneToMany(targetEntity=PublisherTranslations::class, mappedBy="translatable",  cascade={"persist","remove"})
-     * @ORM\OrderBy({"id" = "desc"})
+     * @ORM\OneToMany(targetEntity=PublisherTranslations::class, mappedBy="translatable",  cascade={"persist"})
+     * @ORM\OrderBy({"locale" = "asc"})
      *  
      */
     public $translations;
+
+        /**
+     * @ORM\ManyToMany(targetEntity=Author::class, inversedBy="author", cascade={"persist"} )
+     * @ORM\JoinTable(name="publisher_author")
+     */
+    protected $author;
     protected $initrans;
+
+
 
     public function __construct()
     {
 
         $this->translations = new ArrayCollection();
         $this->initrans = new ArrayCollection();
+        $this->author = new ArrayCollection();
     }
 
-    public function getId(): ?int
+    /**
+     * Get id
+     *
+     * @return int
+     */
+    public function getId()
     {
         return $this->id;
     }
 
+   
 
+    public function addTranslations($translations)
+    {
+        $this->translations[] = $translations;
+    }
+
+    public function setTranslations($translations)
+    {
+
+        $this->translations = $translations;
+        return $this;
+    }
 
     /**
+     *
      * @return Doctrine\Common\Collections\Collection 
      */
     public function getTranslations()
@@ -80,29 +106,6 @@ class Publisher
 
         return $this->translations;
     }
-
-    public function addTranslation(PublisherTranslations $translation): self
-    {
-        if (!$this->translations->contains($translation)) {
-            $this->translations[] = $translation;
-            $translation->setTranslatable($this);
-        }
-
-        return $this;
-    }
-
-    public function removeTranslation(PublisherTranslations $translation): self
-    {
-        if ($this->translations->removeElement($translation)) {
-            // set the owning side to null (unless already changed)
-            if ($translation->getTranslatable() === $this) {
-                $translation->setTranslatable(null);
-            }
-        }
-
-        return $this;
-    }
-
 
     /**
      * Get the value of ordering
@@ -124,6 +127,28 @@ class Publisher
     public function setOrdering(int $ordering)
     {
         $this->ordering = $ordering;
+
+        return $this;
+    }
+
+ 
+
+    /**
+     * Get the value of author
+     */ 
+    public function getAuthor()
+    {
+        return $this->author;
+    }
+
+    /**
+     * Set the value of author
+     *
+     * @return  self
+     */ 
+    public function setAuthor($author)
+    {
+        $this->author = $author;
 
         return $this;
     }

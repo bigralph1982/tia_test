@@ -402,9 +402,6 @@ class Users implements UserInterface, EquatableInterface
         $roles = $this->roles;
         // guarantee every user at least has ROLE_USER
         $roles[] = 'ROLE_USER';
-        if(in_array("ROLE_DEVELOPER", $roles) || in_array("ROLE_SUPER_ADMIN", $roles) || in_array("ROLE_ADMIN", $roles)){
-            $roles = array_merge($roles, Roles::getAllPermissions());
-        }
         return array_unique($roles);
     }
 

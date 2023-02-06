@@ -1,6 +1,8 @@
 <?php
 namespace App\Entity\Production\Author;
 
+use App\Entity\Production\Book\Book;
+use App\Entity\Production\Publisher\Publisher;
 use App\Repository\Production\Author\AuthorRepository;
 
 
@@ -44,6 +46,18 @@ class Author
     private $ordering;
     public $productPlaceholder;
 
+          /**
+     * @ORM\ManyToMany(targetEntity=Book::class, inversedBy="parent")
+     * @ORM\JoinTable(name="book_book")
+     */
+    private $book;
+
+             /**
+     * @ORM\ManyToMany(targetEntity=Publisher::class, inversedBy="parent")
+     * @ORM\JoinTable(name="publisher_publisher")
+     */
+    private $publisher;
+
     /**
      * @ORM\OneToMany(targetEntity=AuthorTranslations::class, mappedBy="translatable",  cascade={"persist"})
      * @ORM\OrderBy({"locale" = "asc"})
@@ -59,6 +73,8 @@ class Author
 
         $this->translations = new ArrayCollection();
         $this->initrans = new ArrayCollection();
+        $this->book = new ArrayCollection();
+        $this->publisher = new ArrayCollection();
     }
 
     /**
@@ -123,6 +139,46 @@ class Author
     public function setOrdering(int $ordering)
     {
         $this->ordering = $ordering;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of book
+     */ 
+    public function getBook()
+    {
+        return $this->book;
+    }
+
+    /**
+     * Set the value of book
+     *
+     * @return  self
+     */ 
+    public function setBook($book)
+    {
+        $this->book = $book;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of publisher
+     */ 
+    public function getPublisher()
+    {
+        return $this->publisher;
+    }
+
+    /**
+     * Set the value of publisher
+     *
+     * @return  self
+     */ 
+    public function setPublisher($publisher)
+    {
+        $this->publisher = $publisher;
 
         return $this;
     }

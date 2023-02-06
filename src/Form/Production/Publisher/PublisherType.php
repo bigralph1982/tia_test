@@ -1,11 +1,14 @@
 <?php
 namespace App\Form\Production\Publisher;
 
+use App\Entity\Production\Author\Author;
 use App\Entity\Production\Publisher\Publisher;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use App\Translations\Types\ResourceTranslationsType;
+use Doctrine\ORM\EntityRepository;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 
 class PublisherType extends AbstractType
@@ -26,6 +29,14 @@ class PublisherType extends AbstractType
             ->add("translations", ResourceTranslationsType::class, [
                 'entry_type' => PublisherTranslationsType::class,
                 'label' => false,
+            ])
+            ->add('author', EntityType::class, [
+                'class' => Author::class,
+                "label" => "Author",
+                'query_builder' => function(EntityRepository $get) {
+                    return $get->createQueryBuilder('p')->where('p.status in (1,2)');
+                }, 'attr' => ['class' => 'form-group '],'choice_label' => "translations[en].title", 'expanded' => true, 'multiple' => true, 'required' => false,
+                
             ])
             
             

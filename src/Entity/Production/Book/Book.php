@@ -2,6 +2,7 @@
 namespace App\Entity\Production\Book;
 
 use App\Entity\Production\Author\Author;
+use App\Repository\Production\Book\BookRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\Common\Collections\ArrayCollection;
@@ -40,24 +41,18 @@ class Book
     private $ordering;
     public $productPlaceholder;
 
-    //  /**
-    //  * @ORM\ManyToMany(targetEntity=Author:class, inversedBy="author", cascade={"persist"})
-    //  * @ORM\JoinColumn(name="author_id", referencedColumnName="id")
-    //  */
-    // private $author_id;
-
-    //  /**
-    //  * @ORM\ManyToMany(targetEntity=Category:class, inversedBy="category", cascade={"persist"})
-    //  * @ORM\JoinColumn(name="category_id", referencedColumnName="id")
-    //  */
-    // private $category_id;
-
     /**
      * @ORM\OneToMany(targetEntity=BookTranslations::class, mappedBy="translatable",  cascade={"persist"})
      * @ORM\OrderBy({"locale" = "asc"})
      *  
      */
     public $translations;
+
+     /**
+     * @ORM\ManyToMany(targetEntity=Author::class, inversedBy="author", cascade={"persist"} )
+     * @ORM\JoinTable(name="book_author")
+     */
+    protected $author;
     protected $initrans;
 
 
@@ -67,6 +62,7 @@ class Book
 
         $this->translations = new ArrayCollection();
         $this->initrans = new ArrayCollection();
+        $this->author = new ArrayCollection(); 
     }
 
     /**
@@ -135,23 +131,25 @@ class Book
         return $this;
     }
 
-    // /**
-    //  * Get the value of author_id
-    //  */ 
-    // public function getAuthor_id()
-    // {
-    //     return $this->author_id;
-    // }
+ 
 
-    // /**
-    //  * Set the value of author_id
-    //  *
-    //  * @return  self
-    //  */ 
-    // public function setAuthor_id($author_id)
-    // {
-    //     $this->author_id = $author_id;
+    /**
+     * Get the value of author
+     */ 
+    public function getAuthor()
+    {
+        return $this->author;
+    }
 
-    //     return $this;
-    // }
+    /**
+     * Set the value of author
+     *
+     * @return  self
+     */ 
+    public function setAuthor($author)
+    {
+        $this->author = $author;
+
+        return $this;
+    }
 }
